@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "no-unused-vars": "error",
+    "prefer-const": "error",
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": "error"
+  },
+  "globals": {
+    "React": "writable"
+  }
+}
