@@ -60,7 +60,10 @@ export default function Home() {
     <>
       <Head>
         <title>Multi page form</title>
-        <meta name="description" content="Discover the Best Food and Drinks" />
+        <meta
+          name="description"
+          content="Multi page form using RTK, Formik and Yup Libraries."
+        />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="72x72" href="/favicon.ico" />
@@ -163,7 +166,7 @@ export default function Home() {
                 formPage === 3 ? setForm(3) : setForm(formPage + 1);
               }}
             >
-              Next
+              {formPage === 3 ? 'Submit' : 'Next'}
             </Button>
           </Flex>
         </footer>
