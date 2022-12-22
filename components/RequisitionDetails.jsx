@@ -18,12 +18,12 @@ import {
   setUrgency,
   setEmploymentType,
   setErrors,
-  setNext,
-  setPrevious
+  setNext
 } from '../forms';
 
 const RequisitionDetails = ({ labels, options }) => {
-  const { requisitionDetails } = useSelector((state) => state.form);
+  const { requisitionDetails, formPage } = useSelector((state) => state.form);
+  const error = useSelector((state) => state.form.errors);
   const { values, errors, touched, handleBlur, handleChange } = useFormik({
     initialValues: {
       ...requisitionDetails
@@ -44,14 +44,14 @@ const RequisitionDetails = ({ labels, options }) => {
       touched?.employmentType
     ) {
       dispatch(setRequisitionDetails(values));
-      dispatch(setErrors(false));
-      dispatch(setPrevious());
-      dispatch(setNext());
+      dispatch(setNext(error));
+      console.log('rd-', error);
     } else {
+      console.log('rd', error);
       console.log('rd', errors);
       dispatch(setErrors(true));
     }
-  }, [dispatch, errors, requisitionDetails, touched, values]);
+  }, [dispatch, error, errors, formPage, requisitionDetails, touched, values]);
 
   return (
     <Box minW="696px" marginTop="41px" h="558px">

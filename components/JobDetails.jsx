@@ -13,7 +13,7 @@ import { setJobDetails, setErrors } from '../forms';
 import { useSelector, useDispatch } from 'react-redux';
 
 const JobDetails = ({ labels }) => {
-  const { jobDetails } = useSelector((state) => state.form);
+  const { jobDetails, formPage } = useSelector((state) => state.form);
   const { values, errors, touched, handleBlur, handleChange } = useFormik({
     initialValues: {
       ...jobDetails
@@ -36,7 +36,7 @@ const JobDetails = ({ labels }) => {
       console.log('jd', errors);
       dispatch(setErrors(true));
     }
-  }, [dispatch, errors, touched, values]);
+  }, [dispatch, errors, formPage, touched, values]);
 
   return (
     <Box minW="696px" marginTop="41px" h="558px">

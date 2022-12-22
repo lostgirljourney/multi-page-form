@@ -23,7 +23,7 @@ const initialState = {
   // next: true,
   previous: false,
   next: false,
-  errors: true,
+  errors: false,
   formPage: 1
 };
 
@@ -33,12 +33,15 @@ export const formSlice = createSlice({
   reducers: {
     setRequisitionDetails: (state, action) => {
       state.requisitionDetails = action.payload;
+      state.errors = false;
     },
     setJobDetails: (state, action) => {
       state.jobDetails = action.payload;
+      state.errors = false;
     },
     setInterviewSettings: (state, action) => {
       state.interviewSettings = action.payload;
+      state.errors = false;
     },
     setTitle: (state, action) => {
       state.requisitionDetails.requestTitle = action.payload;
@@ -55,19 +58,20 @@ export const formSlice = createSlice({
     setEmploymentType: (state, action) => {
       state.requisitionDetails.employmentType = action.payload;
     },
-    setPrevious: (state) => {
-      state.formPage === 1 ? (state.previous = false) : (state.previous = true);
+    setPrevious: (state, action) => {
+      state.formPage > 1 ? (state.previous = true) : (state.previous = false);
+      // action.payload === true ? (state.next = false) : (state.next = true);
     },
-    setNext: (state) => {
-      console.log('redux', state.errors);
-      state.formPage === 3 || state.errors
+    setNext: (state, action) => {
+      console.log('redux', action.payload);
+      state.formPage === 3 || action.payload === true
         ? (state.next = false)
         : (state.next = true);
     },
     setErrors: (state, action) => {
       state.errors = action.payload;
     },
-    setForm: (state, action) => {
+    setFormPage: (state, action) => {
       state.formPage = action.payload;
     }
   }
@@ -85,6 +89,6 @@ export const {
   setPrevious,
   setNext,
   setErrors,
-  setForm
+  setFormPage
 } = formSlice.actions;
 export default formSlice.reducer;
