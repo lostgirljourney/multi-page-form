@@ -44,9 +44,15 @@ const options = {
 };
 
 export default function Home() {
-  const { previous, next, formPage, errors } = useSelector(
-    (state) => state.form
-  );
+  const {
+    previous,
+    next,
+    formPage,
+    errors,
+    requisitionDetails,
+    jobDetails,
+    interviewSettings
+  } = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const [form, setForm] = useState(1);
 
@@ -163,7 +169,14 @@ export default function Home() {
               borderRadius="5px"
               isDisabled={!next}
               onClick={() => {
-                formPage === 3 ? setForm(3) : setForm(formPage + 1);
+                formPage === 3
+                  ? (setForm(3),
+                    console.log({
+                      ...requisitionDetails,
+                      ...jobDetails,
+                      ...interviewSettings
+                    }))
+                  : setForm(formPage + 1);
               }}
             >
               {formPage === 3 ? 'Submit' : 'Next'}

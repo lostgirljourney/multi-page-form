@@ -64,9 +64,7 @@ export const formSlice = createSlice({
     },
     setNext: (state, action) => {
       console.log('redux', action.payload);
-      state.formPage === 3 || action.payload === true
-        ? (state.next = false)
-        : (state.next = true);
+      action.payload === true ? (state.next = false) : (state.next = true);
     },
     setErrors: (state, action) => {
       state.errors = action.payload;
