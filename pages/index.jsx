@@ -57,7 +57,7 @@ export default function Home() {
   } = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const [form, setForm] = useState(1);
-  const [btn, setBtn] = useState();
+  const [btn, setBtn] = useState('next');
 
   useEffect(() => {
     dispatch(setFormPage(form));

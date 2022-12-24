@@ -17,8 +17,7 @@ import {
   setTitle,
   setUrgency,
   setEmploymentType,
-  setErrors,
-  setNext
+  setErrors
 } from '../forms';
 
 const RequisitionDetails = ({ labels, options }) => {
@@ -46,7 +45,6 @@ const RequisitionDetails = ({ labels, options }) => {
     ) {
       dispatch(setRequisitionDetails(values));
       dispatch(setErrors(false));
-      dispatch(setNext());
     } else {
       dispatch(setErrors(true));
     }

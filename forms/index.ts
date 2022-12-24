@@ -19,8 +19,6 @@ const initialState = {
     interviewDuration: '',
     interviewLanguage: ''
   },
-  // previous: true,
-  // next: true,
   previous: false,
   next: false,
   errors: false,
@@ -63,7 +61,6 @@ export const formSlice = createSlice({
       state.next = true;
     },
     setNext: (state, action) => {
-      console.log('redux', action.payload);
       state.formPage > 1 ? (state.previous = true) : (state.previous = false);
       state.errors === true &&
       JSON.stringify(state[action.payload]) ===
