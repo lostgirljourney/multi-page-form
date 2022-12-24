@@ -18,8 +18,7 @@ const JobDetails = ({ labels }) => {
     initialValues: {
       ...jobDetails
     },
-    validationSchema: jobSchema,
-    onSubmit: (values) => console.log(values)
+    validationSchema: jobSchema
   });
   const dispatch = useDispatch();
 

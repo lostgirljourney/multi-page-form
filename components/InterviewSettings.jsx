@@ -12,8 +12,7 @@ const InterviewSettings = ({ labels }) => {
       initialValues: {
         ...interviewSettings
       },
-      validationSchema: interviewSchema,
-      onSubmit: (values) => console.log(values)
+      validationSchema: interviewSchema
     });
   const dispatch = useDispatch();
 

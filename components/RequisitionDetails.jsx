@@ -27,9 +27,7 @@ const RequisitionDetails = ({ labels, options }) => {
     initialValues: {
       ...requisitionDetails
     },
-    validationSchema: requisitionSchema,
-    validateOnBlur: (values) => console.log(values),
-    onSubmit: (values) => console.log(values)
+    validationSchema: requisitionSchema
   });
   const dispatch = useDispatch();
 
