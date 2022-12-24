@@ -29,6 +29,7 @@ const RequisitionDetails = ({ labels, options }) => {
       ...requisitionDetails
     },
     validationSchema: requisitionSchema,
+    validateOnBlur: (values) => console.log(values),
     onSubmit: (values) => console.log(values)
   });
   const dispatch = useDispatch();
@@ -44,11 +45,9 @@ const RequisitionDetails = ({ labels, options }) => {
       touched?.employmentType
     ) {
       dispatch(setRequisitionDetails(values));
-      dispatch(setNext(error));
-      console.log('rd-', error);
+      dispatch(setErrors(false));
+      dispatch(setNext());
     } else {
-      console.log('rd', error);
-      console.log('rd', errors);
       dispatch(setErrors(true));
     }
   }, [dispatch, error, errors, formPage, requisitionDetails, touched, values]);

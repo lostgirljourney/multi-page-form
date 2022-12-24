@@ -43,6 +43,8 @@ const options = {
   color: '#000000'
 };
 
+const page = ['requisitionDetails', 'jobDetails', 'interviewSettings'];
+
 export default function Home() {
   const {
     previous,
@@ -55,12 +57,23 @@ export default function Home() {
   } = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const [form, setForm] = useState(1);
+  const [btn, setBtn] = useState();
 
   useEffect(() => {
     dispatch(setFormPage(form));
-    dispatch(setNext(errors));
-    dispatch(setPrevious(errors));
-  }, [dispatch, errors, form]);
+    btn === 'next' && dispatch(setNext(page[form - 1]));
+    btn === 'previous' && dispatch(setPrevious());
+  }, [dispatch, errors, form, btn]);
+
+  const consoleLog = async () => {
+    console.log('Requisition Details', requisitionDetails);
+    console.log('Job Details', jobDetails);
+    console.log('Interview Settings', interviewSettings);
+
+    await new Promise((resolve) => setTimeout(resolve, 2500));
+
+    window.location.reload();
+  };
 
   return (
     <>
@@ -152,6 +165,7 @@ export default function Home() {
               isDisabled={!previous}
               onClick={() => {
                 formPage === 1 ? setForm(1) : setForm(formPage - 1);
+                setBtn('previous');
               }}
             >
               Previous
@@ -168,15 +182,12 @@ export default function Home() {
               backgroundColor="#E74861"
               borderRadius="5px"
               isDisabled={!next}
+              type="submit"
               onClick={() => {
                 formPage === 3
-                  ? (setForm(3),
-                    console.log({
-                      ...requisitionDetails,
-                      ...jobDetails,
-                      ...interviewSettings
-                    }))
+                  ? (setForm(3), consoleLog())
                   : setForm(formPage + 1);
+                setBtn('next');
               }}
             >
               {formPage === 3 ? 'Submit' : 'Next'}

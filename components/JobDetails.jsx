@@ -33,7 +33,6 @@ const JobDetails = ({ labels }) => {
       dispatch(setJobDetails(values));
       dispatch(setErrors(false));
     } else {
-      console.log('jd', errors);
       dispatch(setErrors(true));
     }
   }, [dispatch, errors, formPage, touched, values]);

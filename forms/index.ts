@@ -58,13 +58,18 @@ export const formSlice = createSlice({
     setEmploymentType: (state, action) => {
       state.requisitionDetails.employmentType = action.payload;
     },
-    setPrevious: (state, action) => {
+    setPrevious: (state) => {
       state.formPage > 1 ? (state.previous = true) : (state.previous = false);
-      // action.payload === true ? (state.next = false) : (state.next = true);
+      state.next = true;
     },
     setNext: (state, action) => {
       console.log('redux', action.payload);
-      action.payload === true ? (state.next = false) : (state.next = true);
+      state.formPage > 1 ? (state.previous = true) : (state.previous = false);
+      state.errors === true &&
+      JSON.stringify(state[action.payload]) ===
+        JSON.stringify(initialState[action.payload])
+        ? (state.next = false)
+        : (state.next = true);
     },
     setErrors: (state, action) => {
       state.errors = action.payload;

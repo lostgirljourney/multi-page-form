@@ -7,13 +7,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const InterviewSettings = ({ labels }) => {
   const { interviewSettings } = useSelector((state) => state.form);
-  const { values, errors, touched, handleBlur, handleChange } = useFormik({
-    initialValues: {
-      ...interviewSettings
-    },
-    validationSchema: interviewSchema,
-    onSubmit: (values) => console.log(values)
-  });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        ...interviewSettings
+      },
+      validationSchema: interviewSchema,
+      onSubmit: (values) => console.log(values)
+    });
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,14 +27,13 @@ const InterviewSettings = ({ labels }) => {
       dispatch(setInterviewSettings(values));
       dispatch(setErrors(false));
     } else {
-      console.log('is', errors);
       dispatch(setErrors(true));
     }
   }, [dispatch, errors, touched, values]);
 
   return (
     <Box minW="696px" marginTop="41px" h="558px">
-      <FormControl>
+      <FormControl onSubmit={handleSubmit}>
         <Box marginBottom="16px">
           <FormLabel htmlFor="interviewMode" marginBottom="5px" style={labels}>
             Interview Mode
